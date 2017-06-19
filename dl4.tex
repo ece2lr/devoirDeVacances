@@ -1,0 +1,271 @@
+\documentclass[12pt]{article}
+\usepackage{cedric}
+
+\lhead{\textsc{Dl} 4 : Remise en route en algèbre linéaire}
+\title{\vspace{-3em}\textsc{Dl} 4 : Remise en route en algèbre linéaire}
+\date{\vspace{-2.5em}pour le jeudi 3 novembre \vspace{-.7em}}
+
+\usetikzlibrary{matrix}
+\usepackage{mathtools}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{fancy}
+
+
+\begin{exercice}[Une base de $\R^2$]
+  On considère les deux vecteurs $\V u = {3 \choose 2}$ et $\V v = {5 \choose 3}$.
+
+  \begin{enumerate}
+    \item Résoudre l'équation $\lambda \V u + \mu \V v = 0$, d'inconnues $\lambda, \mu \in \R$. \\ 
+      Que peut-on en déduire sur la famille $(\V u, \V v)$ ?
+    \item Résoudre l'équation $\lambda \V u + \mu \V v = {3 \choose 5}$, d'inconnues $\lambda, \mu \in \R$.
+    \item Pour $x , y \in \R$, résoudre l'équation $\lambda \V u + \mu \V v = {x \choose y}$, d'inconnues $\lambda, \mu \in \R$. \\ 
+      Que peut-on en déduire sur la famille $(\V u, \V v)$ ?
+    \item Soit $P = 
+        %{{{
+        \begin{tikzpicture}[
+                                >=stealth',
+                                baseline=(matrice-2-1.base), 
+                                every left delimiter/.style={xshift=1ex},
+                                every right delimiter/.style={xshift=-1ex},
+                           ]
+          \matrix (matrice) [matrix of math nodes, left delimiter = {[}, right delimiter = {]}, 
+          ]
+          {
+            \phantom{.} & \phantom{.} \\
+            \V u        & \V v        \\
+            \phantom{.} & \phantom{.} \\
+          };
+
+          \draw [->] (matrice-2-1.north) -- (matrice-1-1.north) ; 
+          \draw [->] (matrice-2-1.south) -- (matrice-3-1.south) ; 
+
+          \draw [->] (matrice-2-2.north) -- (matrice-1-2.north) ; 
+          \draw [->] (matrice-2-2.south) -- (matrice-3-2.south) ; 
+        \end{tikzpicture}
+        %}}}
+        = 
+        \begin{bmatrix}
+          3 & 5 \\ 
+          2 & 3 \\ 
+        \end{bmatrix}
+        $. 
+        Montrer que $P$ est inversible et calculer $P^{-1}$. \\
+        Que constate-t-on ?
+      \item On a représenté ci-dessous les deux vecteurs $\V u$ et $\V v$. \\ 
+        Graphiquement, 
+        à quoi voit-on qu'ils forment une 
+        famille libre de $\R^2$ ?
+        une base de $\R^2$ ?
+  \end{enumerate}
+\end{exercice}
+\begin{center}
+  \includegraphics{dessins/vecteurs.pdf}
+\end{center}
+
+\begin{exercice}[Deux sous-espaces vectoriels de $\R^n$ \hint{illustration page suivante}]
+  Soit $F$ le sous-ensemble \hint{un \important{plan}} de $\R^3$ tel que $F = 
+  \left \{
+    \begin{pmatrix}
+      x \\ y \\ z \\ 
+    \end{pmatrix}
+    \in \R^3
+    %\vert 
+    \text{ tels que }
+    x + 2y + z = 0 
+  \right \}
+  $.
+  \begin{enumerate}
+    \item Vérifier que $F$ est un sous-espace vectoriel de $\R^3$. 
+    \item Trouver une base de $F$.
+      \\\phantom{a}\hfill\hint{on pourra appliquer l'algorithme du pivot de Gauss au \guillemets{système d'équations} $x + 2y + z = 0$}. 
+    \item Soit $G = \Vect \left [ 
+      \begin{pmatrix}
+        1 \\ 1 \\ 0  \\ 
+      \end{pmatrix}
+      ,
+      \begin{pmatrix}
+        2 \\ 1 \\ 1  \\ 
+      \end{pmatrix}
+      \right ]
+      $. 
+      Trouver une équation du plan $G$. 
+    \item Trouver une base de la droite $F \cap G$. 
+  \end{enumerate}
+\end{exercice}
+
+\begin{center}
+  \includegraphics{dessins/plans.pdf}
+\end{center}
+
+\begin{exercice}[Ma matrice $3 \times 3$ préférée]
+  On étudie quelques propriétés de la matrice 
+  $A = 
+  \begin{bmatrix}
+    0 & 1 & 1 \\ 
+    1 & 0 & 1 \\ 
+    1 & 1 & 0 \\ 
+  \end{bmatrix}
+  $
+  \begin{enumerate}
+    \item \important{Calcul des puissances de $A$}
+      \begin{enumerate}
+        \item 
+          Montrer que l'on a 
+          $
+          \forall n \in \N, \ 
+          A^n = 
+          \begin{bmatrix}
+            a_n & b_n & b_n \\ 
+            b_n & a_n & b_n \\ 
+            b_n & b_n & a_n \\ 
+          \end{bmatrix}
+          $
+          avec les relations :
+          $
+          \begin{array}[t]{l@{}l@{}r}
+            a_{n+1} & {} =     {} & 2 b_n    \\
+            b_{n+1} & {} = a_n {} & {} + b_n \\
+          \end{array}
+          $
+          %          $a_{n+1} = 2 b_n$
+          %          $b_{n+1} = a_n + b_n$
+
+        \item 
+          Montrer que les suites définies par 
+          $
+          \begin{array}[t]{l@{}l@{}l}
+            u_n & {} = a_n {} & {} - b_n   \\
+            v_n & {} = a_n {} & {} + 2 b_n \\
+          \end{array}
+            $
+          sont géométriques.
+
+        \item Donner l'expression du terme général des suites $(u_n)$ et $(v_n)$.
+        \item Montrer que $\forall n \in \N, a_n = \frac{1}{3} \left ( 2 u_n + v_n \right )$, et trouver $\lambda, \mu \in \R$ tels que 
+          %$\forall n \in \N, 
+          $b_n = \lambda u_n + \mu v_n$. 
+        \item Conclure sur le terme général 
+
+        \item Vérifier 
+          $\forall n \in \N$, 
+          %l'écriture : 
+          que :
+          $\displaystyle A^n = 
+          \frac{2^n}{3} E
+          +
+          \frac{(-1)^n}{3} F
+          $
+          pour deux matrices $E$ et $F$ à détailler.
+
+      \end{enumerate}
+    \item \important{Inversion de $A$}
+      \begin{enumerate}
+        \item \label{polChar}Vérifier 
+          $A^2 = A + 2 I_3$
+        \item En déduire que 
+          $A \frac{1}{2}(A - I_3) 
+          = \frac{1}{2}(A - I_3) A = I_3$.
+        \item En déduire que la matrice $A$ est inversible et donner l'expression de $A^{-1}$.
+      \end{enumerate}
+    \item \important{Réduction}
+      Dans cette question, on utilise les notations suivantes : 
+      \begin{center}
+        $
+        \V u = 
+        \begin{pmatrix*}[r]
+          1 \\ 1 \\ 1 \\ 
+        \end{pmatrix*}
+        \!
+        ,
+        \V v = 
+        \begin{pmatrix*}[r]
+          -1 \\ 1 \\ 0 \\ 
+        \end{pmatrix*}
+        \!
+        ,
+        \V w = 
+        \begin{pmatrix*}[r]
+          -1 \\ 0 \\ 1 \\ 
+        \end{pmatrix*}
+        \!
+        ,
+        P = 
+        %{{{ matrice des vecteurs colonnes en tikz
+        \begin{tikzpicture}[
+            >=stealth',
+                                baseline=(matrice-2-1.base), 
+                                every left delimiter/.style={xshift=1ex},
+                                every right delimiter/.style={xshift=-1ex},
+                              ]
+          \matrix (matrice) [matrix of math nodes, left delimiter = {[}, right delimiter = {]}, 
+          ]
+          {
+            \phantom{.} & \phantom{.} & \phantom{.} \\ 
+          \V u & \V v & \V w \\
+          \phantom{.} & \phantom{.} & \phantom{.} \\ 
+        };
+
+          \draw [->] (matrice-2-1.north) -- (matrice-1-1.north) ; 
+          \draw [->] (matrice-2-1.south) -- (matrice-3-1.south) ; 
+
+          \draw [->] (matrice-2-2.north) -- (matrice-1-2.north) ; 
+          \draw [->] (matrice-2-2.south) -- (matrice-3-2.south) ; 
+
+          \draw [->] (matrice-2-3.north) -- (matrice-1-3.north) ; 
+          \draw [->] (matrice-2-3.south) -- (matrice-3-3.south) ; 
+        \end{tikzpicture}
+        %}}}
+        =
+        \begin{bmatrix*}[r]
+          1 & -1 & -1 \\ 
+          1 &  1 &  0 \\ 
+          1 &  0 &  1 \\ 
+        \end{bmatrix*}
+        $
+        \hspace{-.7em}
+        ,
+        %        \hspace{-1em}
+        %        et 
+        %        \hspace{-1em}
+        $D = 
+        \begin{bmatrix*}[r]
+          2 & 0  & 0  \\
+          0 & -1 & 0  \\
+          0 & 0  & -1 \\
+        \end{bmatrix*}
+        $
+      \end{center}
+
+      \begin{enumerate}
+        \item Résoudre l'équation $x^2 = x + 2$, pour $x \in \R$. \hint{équation tirée de\ref{polChar}}
+        \item %Soit $B = A - 2 I_3$.
+          Montrer que $\ker(A - 2I_3) = \vect(\V u)$.
+        \item %Soit $B = A - 2 I_3$.
+          Montrer que $\ker(A + I_3) = \vect(\V v, \V w)$.
+        \item Montrer que 
+          $AP = PD$.
+          \\\phantom{a}\hfill\hint{Comme la matrice $P$ est inversible, on a donc $A = PDP^{-1}$}
+
+      \end{enumerate}
+
+      %$A^2 = A + 2 I_3$
+    \end{enumerate}
+    %  $
+    %  \begin{bmatrix}
+    %    -2 & 1  & 1  \\
+    %    1  & -2 & 1  \\
+    %    1  & 1  & -2 \\
+    %  \end{bmatrix}
+    %  $
+    %
+    %
+
+
+
+  \end{exercice}
+
+
+\end{document}

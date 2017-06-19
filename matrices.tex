@@ -1,0 +1,309 @@
+\documentclass[12pt]{article}
+\usepackage{nouvellesCommandes}
+\usepackage{cedric}
+\usepackage{fourier}
+\DeclareMathAlphabet{\mathcal}{OMS}{cmsy}{m}{n}
+\setlength\parindent{0pt}
+\title
+{
+  \faireTitre[p=.50,h=5]{Carrés magiques, d'après \textsc{Hec 2014}}
+}
+\newcommand\Esp{\mathcal{E}}
+\newcommand\C{\mathcal{C}}
+
+%\lhead{}
+%\rhead{T\up{ale} \textsc{Es} 1, lycée St-Ex}
+\begin{document}
+
+\maketitle
+\thispagestyle{fancy}
+
+\section{Notations}
+
+\begin{description}[labelindent=0pt]
+  \item [Espace des matrices]~ \\
+On note \(\M_{3}\left( \R\right) \) l'espace vectoriel des matrices carrées d'ordre 3 à coefficients réels.
+  \item [Base canonique]~ \\
+    On rappelle que la base canonique, notée $\B$, de \(\M_{3}\left( \R\right)\) est formée des 9 matrices \smash{$(E_{i,j})_{\substack{i\in\entiers{1}{3} \\ j\in\entiers{1}{3}}}$},
+
+    où  : \quad 
+    \begin{enligneItemize}
+      \item tous les coefficients la matrice $E_{i,j} \in \M_{3}(\R)$ sont nuls,
+      \item sauf pour un coefficient 1, à l'intersection des \(i\)\up{ème} ligne et \(i\)\up{ème} colonne.
+
+    \hfiller
+    \smash
+    {%
+      \hint
+      {
+        on a $E_{1,2} = 
+        \begin{bsmallmatrix}
+          0 & 0 & 0 \\ 
+          1 & 0 & 0 \\ 
+          0 & 0 & 0 \\ 
+        \end{bsmallmatrix}
+        $, p. ex\up{le}.%
+      }%
+    }%
+    \end{enligneItemize}
+
+    \moinsLigne
+  \item [Sommes] Pour toute matrice \(A=\left( a_{i,j}\right)\in\M_{3}\left( \R\right) \), on note : 
+
+    \hfiller
+    {
+      \begin{tabular}{cccr}
+        \(s_{1}(A) =\sum_{j=1}^{3}a_{1,j}~\), & \(s_{2}\left(A\right) =\sum_{j=1}^{3}a_{2,j}~\),  & \(s_{3}(A)=\sum_{j=1}^{3}a_{3,j}\) & \hint{somme des coefficients des lignes}   \\
+        \(s_{4}(A) =\sum_{i=1}^{3}a_{i,1}~\), & \(s_{5}\left(A\right) =\sum_{i=1}^{3}a_{i,2}~\),  & \(s_{6}(A)=\sum_{i=1}^{3}a_{i,3}\) & \hint{somme des coefficients des colonnes} \\
+        \(s_{7}(A) =\sum_{i=1}^{3}a_{i,i}~\), & \(s_{8}\left(A\right) =\sum_{i=1}^{3}a_{i,4-i}\), & \multicolumn{2}{r}{\hint{somme des coefficients des diagonales}} \\ 
+      \end{tabular}
+    }
+\end{description}
+
+\section{Objectif et notations}
+\begin{enumerate}
+  \item Soit \(\Esp\) l'ensemble des matrices \(A\in\M_{3}\left( \R\right) \) telles que \(s_{7}(A) =0\).
+  \begin{enumerate}
+    \item \label{baseDeEsp1}
+      Calculer la valeur de $s_7$ sur chacune des 9 matrices de la base canonique :\quad \smash{$(E_{i,j})_{\substack{i\in\entiers{1}{3} \\ j\in\entiers{1}{3}}}$}.
+
+      Parmi celles-ci, lesquelles appartiennent à $\Esp$ ? \quad \hint{il y en a 6 sur les 9}
+    %\item Quelle est la dimension de \(\Esp\) ?
+    \item \label{baseDeEsp2}Pour que
+      $A(a) = 
+      \begin{bsmallmatrix}
+        a & 0 & 0 \\ 
+        0 & 1 & 0 \\ 
+        0 & 0 & 0 \\ 
+      \end{bsmallmatrix}
+      $
+      et
+      $B(b) = 
+      \begin{bsmallmatrix}
+        b & 0 & 0 \\ 
+        0 & 0 & 0 \\ 
+        0 & 0 & 1 \\ 
+      \end{bsmallmatrix}
+      $
+      soient dans $\Esp$, combien doivent valoir $a$ et de $b$ ?
+    \item Montrer que \(\Esp\)~est un sous-espace vectoriel de \(\M_{3}\left( \R\right) \).
+    \item En s'aidant des questions \ref{baseDeEsp1} et \ref{baseDeEsp2}, construire une base de $\Esp$.
+      \par \hint{Cette base sera formée de $8$ matrices.}
+  \end{enumerate}
+\end{enumerate}
+  \begin{objetGauche}
+    \qquad
+    \hint
+    {%
+      ainsi, on a :
+      \smash
+      {%
+        $
+        f(A) =
+          \begin{bsmallmatrix}
+            \smash[b]{\strut}
+            s_{1}(A)\\
+            s_{2}(A)\\
+            s_{3}(A)\\
+            s_{4}(A)\\
+            s_{5}(A)\\
+            s_{6}(A)\\
+            s_{7}(A)\\
+            \smash[t]{\strut}
+            s_{8}(A)\\
+          \end{bsmallmatrix}
+        \in \R^{8}
+        $.%
+      }%
+    }%
+    \finObjet
+    On étudie l'application \(f : \M_{3}(\R) \to \R^{8}\), qui à toute matrice $A$, fait correspondre le vecteur  :  \quad
+  %\left( %{{{
+    %  s_{1}(A),
+    %  s_{2}(A),
+    %  s_{3}(A),
+    %  s_{4}(A),
+    %  s_{5}(A),
+    %  s_{6}(A),
+    %  s_{7}(A),
+    %  s_{8}(A),
+    %\right)
+  %}}}
+    $f(A) = \big(s_k(A)\big)_{k\in\entiers{1}{8}}$.
+  %\left(  %{{{
+    %s_{1}(A) ,s_{2}(A) ,s_{3}(A) ,s_{4}(A) ,s_{5}(A) ,s_{6}(A) ,s_{7}(A) ,s_{8}(A) 
+    %\right) 
+    %\in \R^{8}
+    %\).
+    %de \(\R^{8}\)
+  %}}}
+  \end{objetGauche}
+  \moinsLigne
+\begin{enumerate}[resume]
+  \item
+  \begin{enumerate}
+    \item Montrer que l'application \(f\) est linéaire.
+    \item \label{grosseMatrice}
+      \begin{objetGauche}
+      $
+          \newcommand\lignePointilles
+          {
+            \mathrlap{{}\ldots{}}\hphantom{E_{11}} & \mathrlap{{}\ldots{}} \hphantom{E_{21}} & \mathrlap{{}\ldots{}} \hphantom{E_{31}} & 
+            \mathrlap{{}\ldots{}}\hphantom{E_{12}} & \mathrlap{{}\ldots{}} \hphantom{E_{22}} & \mathrlap{{}\ldots{}} \hphantom{E_{32}} & 
+            \mathrlap{{}\ldots{}}\hphantom{E_{13}} & \mathrlap{{}\ldots{}} \hphantom{E_{23}} & \mathrlap{{}\ldots{}} \hphantom{E_{33}} \\
+          }
+        \begin{array}{c@{}c}
+          & 
+          \begin{bmatrix}
+            E_{11}& E_{21}& E_{31} & E_{12}& E_{22}& E_{32} & E_{13}& E_{23}& E_{33} \\
+          \end{bmatrix} \\ 
+          \begin{bmatrix}
+            \vphantom{E_{1,1}\ldots} s_{1}(\cdot)\\
+            \vphantom{E_{1,1}\ldots} s_{2}(\cdot)\\
+            \vphantom{E_{1,1}\ldots} s_{3}(\cdot)\\
+            \vphantom{E_{1,1}\ldots} s_{4}(\cdot)\\
+            \vphantom{E_{1,1}\ldots} s_{5}(\cdot)\\
+            \vphantom{E_{1,1}\ldots} s_{6}(\cdot)\\
+            \vphantom{E_{1,1}\ldots} s_{7}(\cdot)\\
+            \vphantom{E_{1,1}\ldots} s_{8}(\cdot)\\
+          \end{bmatrix}
+          & 
+          \begin{bmatrix}
+            \lignePointilles
+            \lignePointilles
+            \lignePointilles
+            \lignePointilles
+            \lignePointilles
+            \lignePointilles
+            \lignePointilles
+            \lignePointilles
+          \end{bmatrix}
+        \end{array}
+      $
+        \finObjet
+      Calculer, pour 
+        \begin{itemize}
+          \item les 9 matrices $(E_{i,j})_{\substack{i\in\entiers{1}{3} \\ j\in\entiers{1}{3}}}$
+          \item les 8 valeurs $s_k(E_{i,j})$, avec $k\in\entiers{1}{8}$.
+        \end{itemize}
+
+      On donnera le résultat sous la forme du tableau ci-contre.
+      \end{objetGauche}
+  \end{enumerate}
+    \pagebreak
+    ~\\
+    On note \(\C\) la base canonique de \(\R^{8}\).
+  \begin{enumerate}[resume]
+    \item 
+      \begin{objetGauche}
+        ~ \\
+      \qquad où 
+        \smash
+        {%
+      $F=
+      \begin{bmatrix}
+        1     & \cdot & \cdot & 1     & \cdot & \cdot & 1     & \cdot & \cdot \\
+        \cdot & 1     & \cdot & \cdot & 1     & \cdot & \cdot & 1     & \cdot \\
+        \cdot & \cdot & 1     & \cdot & \cdot & 1     & \cdot & \cdot & 1     \\
+        1     & 1     & 1     & \cdot & \cdot & \cdot & \cdot & \cdot & \cdot \\
+        \cdot & \cdot & \cdot & 1     & 1     & 1     & \cdot & \cdot & \cdot \\
+        \cdot & \cdot & \cdot & \cdot & \cdot & \cdot & 1     & 1     & 1     \\
+        1     & \cdot & \cdot & \cdot & 1     & \cdot & \cdot & \cdot & 1     \\
+        \cdot & \cdot & 1     & \cdot & 1     & \cdot & 1     & \cdot & \cdot \\
+      \end{bmatrix}
+      $
+        }%
+        \finObjet
+      À la lumière de la question\ref{grosseMatrice},
+      justifier l'énoncé :
+
+        \centerline
+        {%
+          \guillemets
+          {%
+            la matrice 
+            de \(f\) dans les bases \(\B\) et \(\C\) est 
+            \(F\) 
+          }%
+            ,
+        }%
+
+        \hfiller
+        \hint{avec des \guillemets{$\cdot$} pour les \guillemets{$0$}}
+      \end{objetGauche}
+      %\moinsLigne[1.5]
+    %\item 
+    %  Écrire la matrice \(F\) de \(f\) dans les bases \(\B\) et \(\C\).
+  \end{enumerate}
+    \setcounter{enumi}{2}
+  \item On note \(\G\) l'ensemble des matrices \(A\in\M_{3}\left( \R\right) \) telles que : \quad 
+    \begin{align*}
+      s_{1}(A) =s_{2}(A) =s_{3}(A) =s_{4}(A) =s_{5}(A) =s_{6}(A) =s_{7}(A) =s_{8}(A)
+    \end{align*}
+
+  \begin{enumerate}
+    \item Montrer que \(\G\) est un sous-espace vectoriel de \(\M_{3}\left( \R\right) \).
+  \end{enumerate}
+On note \(\ker(f)\) le noyau de l'application linéaire \(f\). 
+  \begin{enumerate}[resume]
+    \item Soit $M \in \M_{3}(\R)$ une matrice quelconque.
+
+      \begin{objetGauche}
+        alors $f(M) = 0$. \hspace{3cm}~
+        \finObjet
+      Montrer que si : \quad
+      \begin{enligneItemize}
+        \item $M \in \G$, 
+        \item et de plus, $s_{7}(M) = 0$,
+      \end{enligneItemize}
+      \end{objetGauche}
+      %Montrer que si : \quad
+      %\begin{enligneItemize}
+      %  \item $M \in \G$, 
+      %  \item et de plus, $s_{7}(M) = 0$,
+      %\end{enligneItemize}
+      %alors $f(M) = 0$.
+      \moinsLigne[2]
+    \item Montrer aussi la réciproque de l'énoncé précédent. 
+
+      En déduire que : \quad \(\G\cap\Esp=\ker(f)\).
+  \end{enumerate}
+  \item 
+On note \(J\) la matrice de \(\M_{3}\left( \R\right) \) dont tous les coefficients sont égaux à 1. 
+    \hfiller
+    \hint
+    {
+      Ainsi : \quad
+      \smash
+      {%
+        $J = 
+        \begin{bsmallmatrix}
+          1 & 1 & 1 \\
+          1 & 1 & 1 \\
+          1 & 1 & 1 \\
+        \end{bsmallmatrix}
+        $.%
+      }%
+    }
+  \begin{enumerate}
+    \item Calculer $f(J)$.
+  \end{enumerate}
+    Soit $G$ une matrice quelconque telle que : \quad $G \in \G$.
+  \begin{enumerate}[resume]
+    \item Montrer que $f(G) = s_7(G) \cdot f(J)$.
+    \item Pour que $G - t \cdot J$ soit dans $\ker(f)$, quelle doit être la valeur de $t$ ?
+    \item En déduire que toute matrice de \(\G\) est la somme : \quad
+      \begin{enligneItemize}
+        \item d'une matrice de \(\ker(f)\), et
+        \item d'une matrice de $\Vect(J)$.
+      \end{enligneItemize}
+      \moinsLigne[2]
+      %de manière unique 
+  \end{enumerate}
+  \begin{enumerate}[resume]
+    %\item Quel est le rang de l'application \(f\) ?
+    \item Trouver une base de \(\ker(f)\).
+  \end{enumerate}
+\end{enumerate}
+
+\end{document}
